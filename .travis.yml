@@ -21,12 +21,7 @@ script:
   - echo "$TRAVIS_BRANCH"
   - ng build --prod
   - cd ..
+  - if [[$TRAVIS_BRANCH=master]]; then firebase deploy; fi;
 
 after_success:
   - echo 'BUILD SUCCESS'
-  - pwd
-
-deploy:
-  provider: firebase
-  token:
-    secure: "$FIREBASE_TOKEN"
