@@ -20,8 +20,10 @@ before_script:
 script:
   - echo "$TRAVIS_BRANCH"
   - ng build --prod
-  - cd ..
-  - [ $TRAVIS_BRANCH="master"] && firebase deploy || echo "Not on master, not deploying"
+
+# TODO: Deployment
+# deploy:
+#   provider: "heroku"
 
 after_success:
   - echo 'BUILD SUCCESS'
