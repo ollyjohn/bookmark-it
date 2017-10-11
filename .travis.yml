@@ -21,7 +21,7 @@ script:
   - echo "$TRAVIS_BRANCH"
   - ng build --prod
   - cd ..
-  - if [[$TRAVIS_BRANCH=master]]; then firebase deploy; fi;
+  - [ $TRAVIS_BRANCH="master"] && firebase deploy || echo "Not on master, not deploying"
 
 after_success:
   - echo 'BUILD SUCCESS'
