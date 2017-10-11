@@ -24,6 +24,7 @@ script:
 
 after_success:
   - echo 'BUILD SUCCESS'
+  - pwd
 
 deploy:
   provider: firebase
