@@ -13,10 +13,13 @@ before_script:
   - npm install -g @angular/cli
   - cd front-end
   - npm install
+  # TODO: Uncomment these when the back end's up and running
+  # - cd ../back-end
+  # - npm install
 
 script:
   - echo "$TRAVIS_BRANCH"
-  - then ng build --prod
+  - ng build --prod
   - cd ..
 
 after_success:
