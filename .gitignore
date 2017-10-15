@@ -1,0 +1,13 @@
+## MACOS FILES
+*.DS_Store
+
+## VSCODE FILES
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+## NODE MODULES
+node_modules/*
