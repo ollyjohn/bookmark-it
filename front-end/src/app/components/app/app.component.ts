@@ -3,7 +3,7 @@ import{BookmarkComponent} from './bookmark.component'
 
 @Component({
   selector: 'app-root',
-  template: `<h1>{{name}}</h1>`
+  template: `<my-bookmark></my-bookmark>`
 })
 export class AppComponent  {
   name='My First Bookmark';
