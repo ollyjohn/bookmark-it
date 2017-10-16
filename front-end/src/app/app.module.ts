@@ -1,16 +1,11 @@
+import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import { BookmarkComponent } from './bookmark.component';
+import { AppComponent }  from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports:      [ BrowserModule ],
+  declarations: [ AppComponent, BookmarkComponent ],
+  bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
