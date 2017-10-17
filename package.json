@@ -21,8 +21,14 @@
   },
   "homepage": "https://github.com/ollyjohn/turtles-nineteen#readme",
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.12.2",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.0",
     "path": "^0.12.7"
   }
 }

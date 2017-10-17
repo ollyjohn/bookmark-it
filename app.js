@@ -1,31 +1,43 @@
-// Dependency requires
+// deps
 const express = require( 'express' );
 const path = require( 'path' );
 const bodyParser = require( 'body-parser' );
 const cors = require( 'cors' );
+const passport = require( 'passport' );
+const mongoose = require( 'mongoose' );
+const users = require( './routes/users' );
+const bookmarks = require( './routes/bookmarks' );
+const config = require( './config/db' );
 
-// Server setup
+//database connect
+mongoose.connect( config.db );
+mongoose.connection.on( 'connected', () => {
+    console.log( '>> [ CONNECTED TO DATABASE ' + config.db + ' ]' );
+} );
+mongoose.connection.on( 'error', ( err ) => {
+    console.log( '>> [ ERROR CONNECTING TO DATABASE - ' + err + ' ]' );
+} );
+
+// setup
 const app = express();
-const port = 8080;
+
+const port = process.env.PORT || 8080;
 
 app.use( cors() );
-app.use( express.static( path.join( __dirname, 'www' ) ) );
+app.use( express.static( path.join( __dirname, 'www' ) ) )
 app.use( bodyParser.json() );
+app.use( passport.initialize() );
+app.use( passport.session() );
 
-/**
- * Set response for entry point to the application
- */
-app.get( '/', ( request, response ) => {
-    response.sendFile( path.join( __dirname, 'front/public/index.html' ) );
-} );
-/**
- * Set response for erroneous routes
- */
+require( './config/passport' )( passport );
+
+app.use( '/users', users );
+app.use( '/bookmarks', bookmarks );
+
 app.get( '*', ( request, response ) => {
-    //TODO: Add a component to the angular app to route to
-    response.send( 'NOT FOUND.' );
+    response.sendFile( path.join( __dirname, 'public/index.html' ) );
 } );
 
 app.listen( port, () => {
-    console.log( `>> [ SERVER UP AND LISTENING ON PORT ${port} ]` );
+    console.log( `>> [ APPLICATION RUNNING ON PORT ${port} ]` );
 } );
