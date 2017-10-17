@@ -51,7 +51,7 @@ router.get( '/', ( request, response ) => {
 
 router.get( '/:bookmarkId', ( request, response ) => {
     
-    const bookmarkId = request.params.id;
+    const bookmarkId = request.params.bookmarkId;
     
     console.log( `>> [ ATTEMPTING TO FETCH BOOKMARK WITH ID ${ bookmarkId } AT ${ new Date().toISOString() } ]` );
 
@@ -72,13 +72,13 @@ router.get( '/:bookmarkId', ( request, response ) => {
 
 } );
 
-router.get( '/author/:authorId', ( request, response, next ) => {
+router.get( '/creator/:creatorId', ( request, response, next ) => {
 
-    const authorId = request.params.authorId;
+    const creatorId = request.params.creatorId;
 
     console.log( `>> [ ATTEMPTING TO FETCH ALL BOOKMARKS BY USER ${ authorId } AT ${ new Date().toISOString() } ]` );
 
-    Bookmark.getBookmarksByAuthor( authorId, ( err, bookmarks ) => {
+    Bookmark.getBookmarksByCreator( creatorId, ( err, bookmarks ) => {
         if ( err ) {
             console.log( '>> [ ERROR - SERVER FAULT ]' );
             response.json( { success: false, msg: 'Something went wrong' } );
