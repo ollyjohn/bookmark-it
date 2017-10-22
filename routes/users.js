@@ -29,6 +29,7 @@ router.post( '/register', ( request, response, next ) => {
                 if ( err ) {
                     console.log( `>> [ ERROR - USER NOT CREATED ]`)
                     response.json( { success: false, msg: 'Failed to create user' } );
+                    throw err;
                 } else {
                     console.log( '>> [ SUCCESS - USER CREATED ]')
                     response.json( { success: true, msg: 'User created!' } );
