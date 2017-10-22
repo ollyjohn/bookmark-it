@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-1"></div>
+    <div class="col-lg-8 col-md-8 col-sm-10">
+        <div class="jumbotron">
+            <img src="assets/turtle.svg" alt="logo" width="250px">
+            <div class="btn-group" role="group" aria-label="Log in or Sign up" data-toggle="buttons">
+                <button type="button" class="btn btn-light" [ngClass]="{active: form === 'login'}" (click)="toggleForm()">
+                    Log in
+                </button> 
+                <button type="button" class="btn btn-light" [ngClass]="{active: form === 'register'}" (click)="toggleForm()">
+                    Sign up
+                </button> 
+            </div>
+            <div class="form" *ngIf="form === 'login'">
+                <h3>Please sign in using the form below</h3>
+                <div class="form-group form-group-lg">
+                    <input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="login.username" aria-label="Username">                
+                </div>
+                <div class="form-group form-group-lg">
+                    <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="login.password" aria-label="Password">                
+                </div>
+            </div>
+            <div class="form" *ngIf="form === 'register'">
+                <h3>Welcome!<br/>Please sign up using the form below</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="forename" placeholder="Forename" [(ngModel)]="register.forename" aria-label="Forename">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="surname" placeholder="Surname" [(ngModel)]="register.surname" aria-label="Surname">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="register.username" aria-label="Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="passwordA" placeholder="Password" [(ngModel)]="register.password.a" aria-label="Password">                
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="passwordB" placeholder="Confirm password" [(ngModel)]="register.password.b" aria-label="Password">
+                </div>
+            </div>
+            <button class="btn btn-dark btn-block btn-lg" type="button" (click)="onSubmit( form )">{{ form === 'login' ? 'SIGN IN' : 'REGISTER' }}</button>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="!valid && message">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Error: </strong> {{ message }}
+            </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="valid && message">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Success: </strong> {{ message }}
+            </div>
+        </div>
+    </div>
+</div>

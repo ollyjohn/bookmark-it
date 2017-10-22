@@ -1,11 +1,43 @@
+// MODULES
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BookmarkComponent } from './bookmark.component';
-import { AppComponent }  from './components/app/app.component';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Router, Routes } from '@angular/router';
+import { Http, HttpModule } from '@angular/http';
 
-@NgModule({
-  imports:      [ BrowserModule ],
-  declarations: [ AppComponent, BookmarkComponent ],
-  bootstrap:    [ AppComponent ]
-})
+// COMPONENTS
+import { AppComponent }  from './components/app/app.component';
+import { BookmarkComponent } from './bookmark.component';
+import { LoginComponent } from './components/login/login.component';
+import { LandingComponent } from './components/landing/landing.component';
+
+// SERVICES
+import { AuthService } from './services/auth/auth.service';
+
+const routes: Routes = [
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent }
+];
+
+@NgModule( {
+    declarations: [
+        AppComponent,
+        BookmarkComponent,
+        LoginComponent,
+        LandingComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        RouterModule.forRoot( routes )
+    ],
+    providers: [
+        AuthService
+    ],
+    bootstrap: [
+        AppComponent
+    ]
+} )
 export class AppModule { }
