@@ -28,7 +28,7 @@ const routes: Routes = [
         RouterModule.forRoot( routes )
     ],
     providers: [
-      AuthService
+        AuthService
     ],
     bootstrap: [
         AppComponent
