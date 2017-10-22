@@ -11,14 +11,6 @@ const schema = mongoose.Schema( {
         type: String,
         required: true
     },
-    dob: {
-        type: Date,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
     username: {
         type: String,
         required: true
