@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LandingComponent } from './components/landing/landing.component';
 
 import { AuthService } from './services/auth/auth.service';
+import { HeaderComponent } from './components/header/header.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
     declarations: [
         AppComponent,
         LoginComponent,
-        LandingComponent
+        LandingComponent,
+        HeaderComponent
     ],
     imports: [
         BrowserModule,

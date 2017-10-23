@@ -8,7 +8,7 @@ div.jumbotron {
 
 img {
     display: block;
-    margin-left: calc( 50% - 125px );
+    margin-left: calc( 50% - 75px );
     margin-bottom: 20px;
 }
 
