@@ -8,7 +8,7 @@
   <ul>
     <li *ngFor="let bookmark of bookmarks"><input type="text" name="bookmark" [(ngModel)]="bookmark.name"><button (click)="updateBookmark(bookmark)">Save</button> <button (click)="deleteBookmark(bookmark)">Delete</button></li>
   </ul>
-  <p>Create new bookmark: <input type="text" name="new_bookmark" [(ngModel)]="new_food"><button (click)="createBookmark(bookmark)">Save</button></p>
+  <p>Create new bookmark: <input type="text" name="new_bookmark" [(ngModel)]="new_bookmark"><button (click)="createBookmark(bookmark)">Save</button></p>
 
   `
 })
