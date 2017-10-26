@@ -7,32 +7,30 @@ import {Observable} from 'rxjs/Rx';
 import {map} from  'rxjs/operator/map';
 
 @Injectable()
-export class HttpService{
+export class BookmarkService{
  private data;
 
-    constructor(private http:Http){
+    constructor(private  _http:Http){ }
 
-}
+getBookmark(){
 
-getData(){
-
-    return this.http.get('http://localhost:8080/users/')
+    return this._http.get('http://localhost:8080/users/')
         .map(response => response.json());
 }
 
 createBookmark(bookmark) {
     let body = JSON.stringify(bookmark);
-    return this.http.post('/api/', body, options ).map((res: Response) => res.json());
+    return this._http.post('/api/', body, options ).map((res: Response) => res.json());
 }
 
 updateBookmark(bookmark) {
     let body = JSON.stringify(bookmark);
-    return this.http.put('/api/' + bookmark_id, body, options ).map((res: Response) => res.json());
+    return this._http.put('/api/' + bookmark_id, body, options ).map((res: Response) => res.json());
 
 
 }
 deleteBookmark(bookmark_id) {
-    return this.http.delete('/api/' + bookmark_id);
+    return this._http.delete('/api/' + bookmark_id);
 }
 
 

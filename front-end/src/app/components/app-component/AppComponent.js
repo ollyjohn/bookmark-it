@@ -22,7 +22,7 @@ export class AppComponent {
 
     createBookmark(name) {
         let bookmark = {name: name};
-        this._demoService.createBookmark(bookmark).subscribe(
+        this._bookmarkService.createBookmark(bookmark).subscribe(
                 data => {
                 // refresh the list
                 this.getData();
@@ -36,7 +36,7 @@ export class AppComponent {
     }
 
     updateBookmark(name) {
-        this._demoService.updateData(data).subscribe(
+        this._bookmarkService.updateData(data).subscribe(
                 data => {
                 // refresh the list
                 this.getData();
@@ -49,9 +49,9 @@ export class AppComponent {
         );
     }
 
-    deleteFood(name) {
+    deleteBookmark(name) {
         if (confirm("Are you sure you want to delete " + bookmark.name + "?")) {
-            this._demoService.deleteBookmark(bookmark).subscribe(
+            this._bookmarkService.deleteBookmark(bookmark).subscribe(
                     data => {
                     // refresh the list
                     this.getData();
