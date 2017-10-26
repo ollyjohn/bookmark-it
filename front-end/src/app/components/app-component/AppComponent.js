@@ -25,7 +25,7 @@ export class AppComponent {
         this._bookmarkService.createBookmark(bookmark).subscribe(
                 data => {
                 // refresh the list
-                this.getData();
+                this.getBookmark();
                 return true;
             },
                 error => {
@@ -39,7 +39,7 @@ export class AppComponent {
         this._bookmarkService.updateData(data).subscribe(
                 data => {
                 // refresh the list
-                this.getData();
+                this.getBookmark();
                 return true;
             },
                 error => {
@@ -54,7 +54,7 @@ export class AppComponent {
             this._bookmarkService.deleteBookmark(bookmark).subscribe(
                     data => {
                     // refresh the list
-                    this.getData();
+                    this.getBookmark();
                     return true;
                 },
                     error => {
