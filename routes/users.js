@@ -68,14 +68,17 @@ router.post( '/auth', ( request, response, next ) => {
 
             if ( err ) {
                 console.log( '>> [ ERROR - COULD NOT VERIFY ]' );
-                throw error;
+                throw err;
             }
             if ( match ) {
                 console.log( '>> [ SUCCESS - USER VERIFIED ]' );
                 let stripped = {
                     _id: user._id,
-                    name: user.name
+                    forename: user.forename,
+                    surname: user.surname
                 };
+                // console.log( stripped );
+                console.log( user );
                 const token = jwt.sign( stripped, config.secret, {
                     //expires in 1 week
                     expiresIn: 3600*24*7

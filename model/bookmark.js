@@ -21,6 +21,10 @@ const schema = mongoose.Schema( {
         type: String,
         required: true
     },
+    tags: {
+        type: Array,
+        required: false
+    },
     date_created: {
         type: Date,
         required: true

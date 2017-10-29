@@ -14,7 +14,8 @@ router.post( '/create', ( request, response ) => {
         url: request.body.url,
         image: request.body.image,
         date_created: new Date().toISOString(),
-        date_updated: null
+        date_updated: null,
+        tags: request.body.tags
     } );
 
     Bookmark.createBookmark( bookmark, ( err, bookmark ) => {
@@ -76,7 +77,7 @@ router.get( '/creator/:creatorId', ( request, response, next ) => {
 
     const creatorId = request.params.creatorId;
 
-    console.log( `>> [ ATTEMPTING TO FETCH ALL BOOKMARKS BY USER ${ authorId } AT ${ new Date().toISOString() } ]` );
+    console.log( `>> [ ATTEMPTING TO FETCH ALL BOOKMARKS BY USER ${ creatorId } AT ${ new Date().toISOString() } ]` );
 
     Bookmark.getBookmarksByCreator( creatorId, ( err, bookmarks ) => {
         if ( err ) {
@@ -86,7 +87,7 @@ router.get( '/creator/:creatorId', ( request, response, next ) => {
         }
         if ( bookmarks.length === 0 ) {
             console.log( '>> [ ERROR - NO BOOKMARKS FOUND ]' );
-            response.json( { success: true, msg: `No bookmarks found by ${ authorId }`, bookmarks: bookmarks } );
+            response.json( { success: true, msg: `No bookmarks found by ${ creatorId }`, bookmarks: bookmarks } );
         } else {
             console.log( '>> [ SUCCESS - BOOKMARKS FETCHED ]' );
             response.json( { success: true, bookmarks: bookmarks } );
@@ -94,7 +95,7 @@ router.get( '/creator/:creatorId', ( request, response, next ) => {
     } );
 } );
 
-router.put( '/update/id', ( request, response, next ) => {
+router.put( '/:id', ( request, response, next ) => {
 
     console.log( `>> [ ATTEMPTING TO UPDATE BOOKMARK ${ request.body.id } AT ${ new Date().toISOString() } ]` );
 

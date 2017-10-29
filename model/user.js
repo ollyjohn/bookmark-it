@@ -30,7 +30,7 @@ module.exports.getUserByID = ( id, callback ) => {
 };
 
 module.exports.getUserByUsername = ( username, callback ) => {
-    User.findOne( { username: username }, { _id: 1, name: 1, username: 1, password: 1, email: 1 }, callback );
+    User.findOne( { username: username }, { _id: 1, forename: 1, surname: 1, username: 1, password: 1, email: 1 }, callback );
 };
 
 module.exports.createUser = ( user, callback ) => {

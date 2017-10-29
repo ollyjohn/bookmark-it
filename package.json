@@ -4,7 +4,7 @@
   "description": "Bookmark management application built using the MEAN stack",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "concurrently 'nodemon app.js' 'cd ./front-end && pwd && ng serve'"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^3.5.0",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
