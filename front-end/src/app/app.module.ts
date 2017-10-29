@@ -14,6 +14,7 @@ import { LandingComponent } from './components/landing/landing.component';
 
 // SERVICES
 import { AuthService } from './services/auth/auth.service';
+import { HeaderComponent } from './components/header/header.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,7 +26,8 @@ const routes: Routes = [
         AppComponent,
         BookmarkComponent,
         LoginComponent,
-        LandingComponent
+        LandingComponent,
+        HeaderComponent
     ],
     imports: [
         BrowserModule,
