@@ -3,7 +3,8 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
 import { User } from '../../models/user';
-// import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +13,8 @@ export class AuthService {
 	private user: any;
 	private token: string;
 
-	constructor( private _http: Http ) {
+	constructor( private _http: Http, private _router: Router ) {
+        this.development = environment.production;
 	}
 
 	/**
@@ -91,7 +93,8 @@ export class AuthService {
 	public logOut = (): void => {
 		delete this.token;
 		delete this.user;
-		localStorage.clear();
+        localStorage.clear();
+        this._router.navigate( [ '/login' ] );
 	};
 
 }

@@ -5,3 +5,7 @@
 .navbar-brand img {
     color: white;
 }
+
+.nav-link {
+    cursor: pointer;
+}

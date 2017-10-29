@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { User } from '../../models/user';
+import { JwtHelper } from 'angular2-jwt';
 
 @Component({
     selector: 'login',
@@ -10,11 +11,11 @@ import { User } from '../../models/user';
 })
 export class LoginComponent {
 
-    public login = {
+    private login = {
         username: '',
         password: '' 
     };
-    public register = {
+    private register = {
         password: {
             a: '',
             b: ''
@@ -28,7 +29,7 @@ export class LoginComponent {
     private message: string = '';
     private working: boolean = false;
 
-    constructor( private _auth: AuthService, private _router: Router ) { }
+    constructor( private _auth: AuthService, private _router: Router, private _jwt: JwtHelper ) {}
 
     /**
      * Submit the form
@@ -58,10 +59,10 @@ export class LoginComponent {
                 // on good response
                 if ( response.success ) {
                     localStorage.clear();
+                    console.log( this._jwt.decodeToken( response.token ) ) ;
                     localStorage.setItem( 'accessToken', response.token );
                     localStorage.setItem( 'userInfo', JSON.stringify( response.user ) );
-                    // TODO: Implement dashboard component
-                    // this._router.navigate( ['/dashboard'] );
+                    this._router.navigate( [ '/bookmarks' ] );
                 } 
                 // on bad response
                 else {

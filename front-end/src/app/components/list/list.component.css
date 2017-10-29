@@ -1,0 +1,169 @@
+div.row {
+    margin-top: 15px;
+}
+
+div.bookmark {
+    background: #f9f9f9;
+    border-radius: 3px;
+    border: 1px solid rgba( #e9e9e9 );
+    border-bottom: 5px solid #999;
+    position: relative;
+    margin-bottom: 15px;
+    overflow: scroll;
+    transition: linear all 0.2s;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+}
+
+div.bookmark:hover {
+    transform: translateY( -2.5px );
+    -webkit-box-shadow: 2px 5px 10px 0px rgba(153,153,153,1);
+    -moz-box-shadow: 2px 5px 10px 0px rgba(153,153,153,1);
+    box-shadow: 2px 5px 10px 0px rgba(153,153,153,1);
+    border-bottom: 5px solid #09c;
+    transition: linear all 0.2s;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+}
+
+div.img-container {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+div.img-container img {
+    transition: linear all 0.2s;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+}
+
+div.img-container:hover img {
+    filter: blur( 1px );
+    transition: linear all 0.2s;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+}
+
+div.img-container .ctas {
+    position: absolute;
+    width: 100%;
+    top: calc( 50% - 30px );
+    left: calc( 50% - ( 30px * 3) - ( 5px * 3) );
+    display: none;
+    transition: linear all 0.2s;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+}
+
+.btn-circle {
+    width: 60px;
+    height: 60px;
+    line-height: 1.33;
+    border-radius: 50%;
+    margin-left: 5px;
+    background-color: rgba( 0,0,0,0.5 );
+    text-align: center;
+    transition: linear all 0.2s;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+}
+
+.btn-circle.add {
+    background-color: #55C77B;
+    width: 45px;
+    height: 45px;
+}
+.btn-circle.add i {
+    color: #e0e0e0 !important;
+    margin-left: calc( 37.5% - 10pt );
+}
+
+.btn-circle.add:hover i {
+    color: #fff !important;
+}
+
+.btn-circle:active,
+.btn-circle:focus {
+    outline: none !important;
+}
+
+.btn-circle i {
+    font-size: 20pt !important;
+    color: #c0c0c0 !important;
+    transition: linear all 0.2s;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+}
+
+div.img-container .ctas .cta:hover * {
+    color: #fff !important;
+    transition: linear all 0.2s;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+}
+
+div.img-container:hover .ctas {
+    display: block;
+    transition: linear all 0.2s;
+}
+
+div.bookmark * {
+    text-decoration: none;
+    color: #999;
+    font-size: 10pt;
+    font-weight: 300;
+}
+
+div.bookmark .body {
+    position: relative;
+    padding: 15px;
+}
+
+div.bookmark .body h3 {
+    font-weight: 400;
+    color: #666;
+    font-size: 11pt;
+}
+
+div.bookmark img {
+    width: 100%;
+    height: auto;
+}
+
+div.bookmark .body .title {
+    color: #666;
+    font-weight: 400;
+}
+
+div.bookmark.body .url {
+    color: #999;
+}
+
+a.tag {
+    padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: 5px;
+    background: #efefef;
+    border: 1px solid rgba( 127, 127, 127, 0.2 );
+    border-radius: 3px;
+    transition: linear all 0.2s;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+    cursor: pointer;
+}
+
+a.tag:hover {
+    background: #f9f9f9;
+    transition: linear all 0.2s;
+    -webkit-transition: linear all 0.2s;
+    -moz-transition: linear all 0.2s;
+}
+
+div.form {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
