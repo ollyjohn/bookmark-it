@@ -55,11 +55,9 @@ export class LoginComponent {
     private signIn = ( data: { username: string, password: string} ) => {
         this._auth.authenticate( data ).subscribe( 
             ( response ) => { 
-                console.log( response );
                 // on good response
                 if ( response.success ) {
                     localStorage.clear();
-                    console.log( this._jwt.decodeToken( response.token ) ) ;
                     localStorage.setItem( 'accessToken', response.token );
                     localStorage.setItem( 'userInfo', JSON.stringify( response.user ) );
                     this._router.navigate( [ '/bookmarks' ] );
@@ -84,7 +82,6 @@ export class LoginComponent {
             data.password = data.password.a;
             this._auth.registerUser( data ).subscribe(
                 ( response ) => {
-                    console.log( response );
                     this.working = false;
                     if( response.success ) {
                         this.toggleForm();
@@ -104,7 +101,5 @@ export class LoginComponent {
         }
         
     }
-
-
 
 }

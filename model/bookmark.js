@@ -50,6 +50,7 @@ module.exports.getBookmarksByCreator = ( creator, callback ) => {
 };
 
 module.exports.createBookmark = ( bookmark, callback ) => {
+    console.log( bookmark );
     bookmark.save( callback );
 };
 

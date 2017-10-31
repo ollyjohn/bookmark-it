@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth/auth.service';
+import { UserService } from '../../services/user/user.service';
+
+import { User } from '../../models/user';
 
 
 @Component({
@@ -11,11 +14,12 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-    public user: string = '';
+    public user: User = {} as User;
 
-    constructor( private _authService: AuthService) { }
+    constructor( private _authService: AuthService, private _userService: UserService) { }
 
     ngOnInit() {
+        this.user = this._userService.fetchUser();
     }
 
 }

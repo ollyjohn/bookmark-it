@@ -2,14 +2,14 @@ div.jumbotron {
     text-align: center;
     align-items: center;
     align-content: center;
+    margin-top: 20px;
     padding-top: 32px;
     padding-bottom: 32px;
 }
 
 img {
     display: block;
-    margin-left: calc( 50% - 75px );
-    margin-bottom: 20px;
+    margin: 20px auto;
 }
 
 .btn-group {

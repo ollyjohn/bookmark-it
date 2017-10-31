@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Bookmark = require( '../model/bookmark' );
 
-router.post( '/create', ( request, response ) => {
+router.post( '/', ( request, response ) => {
 
     console.log( `>> [ ATTEMPTING TO CREATE BOOKMARK ${ request.body.title } AT ${ new Date().toISOString() } ]` );
     
@@ -14,9 +14,13 @@ router.post( '/create', ( request, response ) => {
         url: request.body.url,
         image: request.body.image,
         date_created: new Date().toISOString(),
-        date_updated: null,
-        tags: request.body.tags
+        date_updated: null
     } );
+
+    if ( typeof request.body.tags === 'string' ) { 
+        bookmark.tags = request.body.tags.replace( ' ', '' ).split( ',' ) 
+    }
+    else { bookmark.tags = request.body.tags };
 
     Bookmark.createBookmark( bookmark, ( err, bookmark ) => {
         if ( err ) {
@@ -50,7 +54,7 @@ router.get( '/', ( request, response ) => {
 } );
 
 
-router.get( '/:bookmarkId', ( request, response ) => {
+router.get( '/id/:bookmarkId', ( request, response ) => {
     
     const bookmarkId = request.params.bookmarkId;
     
@@ -115,7 +119,7 @@ router.delete( '/:id', ( request, response, next ) => {
 
     console.log( `>> [ ATTEMPTING TO DELETE BOOKMARK ${ request.params.id } AT ${ new Date().toISOString() } ]` );
 
-    Bookmark.deleteBookmarkById( request.params.id, ( err, echo ) => {
+    Bookmark.deleteBookmark( request.params.id, ( err, echo ) => {
         if ( err ) {
             console.log( '>> [ ERROR - SERVER ]' );
             response.json( { success: false, msg: 'Something went wrong' } );

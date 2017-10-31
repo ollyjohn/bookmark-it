@@ -12,16 +12,16 @@ import { LoginComponent } from './components/login/login.component';
 import { ListComponent } from './components/list/list.component';
 
 import { AuthService } from './services/auth/auth.service';
+import { BookmarkService } from './services/bookmark/bookmark.service';
+import { UserService } from './services/user/user.service';
 
 import { AuthGuard } from './guards/auth.guard';
-import { CreateBookmarkComponent } from './components/create-bookmark/create-bookmark.component';
 
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent, },
     { path: 'bookmarks', component: ListComponent, canActivate: [ AuthGuard ] },
-    { path: 'bookmarks/create', component: CreateBookmarkComponent, canActivate: [ AuthGuard ] }
 ];
 
 @NgModule( {
@@ -29,8 +29,7 @@ const routes: Routes = [
         AppComponent,
         LoginComponent,
         ListComponent,
-        HeaderComponent,
-        CreateBookmarkComponent
+        HeaderComponent
     ],
     imports: [
         BrowserModule,
@@ -40,6 +39,8 @@ const routes: Routes = [
     ],
     providers: [
         AuthService,
+        BookmarkService,
+        UserService,
         JwtHelper,
         AuthGuard
     ],

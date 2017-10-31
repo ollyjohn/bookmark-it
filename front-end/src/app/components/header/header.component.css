@@ -1,11 +1,29 @@
-.active {
-    color: #e0e0e0;
+img {
+    position: absolute;
+    top: -12.5px;
+    left: 170px;
+    height: 85px;
 }
 
-.navbar-brand img {
-    color: white;
+nav.navbar {
+    height: 56px !important;
+}
+
+.bg-dark {
+    background: #2c3e50 !important;
+    color: #bdc3c7;
+}
+
+.active {
+    color: #ecf0f1;
 }
 
 .nav-link {
     cursor: pointer;
+}
+
+li.nav-item {
+    font-size: 18px;
+    position: relative;
+    top: 8px;
 }

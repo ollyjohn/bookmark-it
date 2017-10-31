@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Bookmark } from '../../models/bookmark';
-import { User } from '../../models/user';
-import { Router } from '@angular/router';
+import { BookmarkService } from '../../services/bookmark/bookmark.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-list',
@@ -10,97 +10,10 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-    private data: any[] = [
-        {
-            id: '1',
-            creator: 'jim.bob',
-            title: 'Example bookmark',
-            description: 'This is an example bookmark',
-            date_created: new Date(),
-            image: 'https://picsum.photos/500/250/?image=10',
-            url: 'https://google.com',
-            tags: ['test', 'example', 'blue'],
-            isHovered: false
-        },{
-            id: '2',
-            creator: 'jim.bob',
-            title: 'Example bookmark',
-            description: 'This is an example bookmark',
-            date_created: new Date(),
-            image: 'https://picsum.photos/500/250/?image=20',
-            url: 'https://google.com',
-            tags: ['test', 'example', 'green'],
-            isHovered: false
-        },{
-            id: '3',
-            creator: 'jim.bob',
-            title: 'Example bookmark',
-            description: 'This is an example bookmark',
-            date_created: new Date(),
-            image: 'https://picsum.photos/500/250/?image=30',
-            url: 'https://google.com',
-            tags: ['test', 'example', 'grey'],
-            isHovered: false
-        },{
-            id: '4',
-            creator: 'jim.bob',
-            title: 'Example bookmark',
-            description: 'This is an example bookmark',
-            date_created: new Date(),
-            image: 'https://picsum.photos/500/250/?image=40',
-            url: 'https://google.com',
-            tags: ['test', 'example', 'brown'],
-            isHovered: false
-        },{
-            id: '5',
-            creator: 'jim.bob',
-            title: 'Example bookmark',
-            description: 'This is an example bookmark',
-            date_created: new Date(),
-            image: 'https://picsum.photos/500/250/?image=50',
-            url: 'https://google.com',
-            tags: ['test', 'example', 'blue'],
-            isHovered: false
-        },{
-            id: '6',
-            creator: 'jim.bob',
-            title: 'Example bookmark',
-            description: 'This is an example bookmark',
-            date_created: new Date(),
-            image: 'https://picsum.photos/500/250/?image=60',
-            url: 'https://google.com',
-            tags: ['test', 'example', 'green'],
-            isHovered: false
-        },{
-            id: '7',
-            creator: 'jim.bob',
-            title: 'Example bookmark',
-            description: 'This is an example bookmark',
-            date_created: new Date(),
-            image: 'https://picsum.photos/500/250/?image=70',
-            url: 'https://google.com',
-            tags: ['test', 'example', 'grey'],
-            isHovered: false
-        },{
-            id: '8',
-            creator: 'jim.bob',
-            title: 'Example bookmark',
-            description: 'This is an example bookmark',
-            date_created: new Date(),
-            image: 'https://picsum.photos/500/250/?image=80',
-            url: 'https://google.com',
-            tags: ['test', 'example', 'brown'],
-            isHovered: false
-        }
-    ];
+    private data: any[] = [];
     private target: string = '';
-    private user: User = {
-        username: '',
-        forename: '',
-        surname: ''
-    };
     private bookmark = {
-        creator: this.user.username,
+        creator: this._userService.fetchUser().username,
         title: '',
         description: '',
         url: '',
@@ -109,46 +22,58 @@ export class ListComponent implements OnInit {
         tags: ''
     };
 
-    constructor( private _router: Router ) {
-        
-    }
+    constructor( private _bookmarkService: BookmarkService, private _userService: UserService ) { }
 
     ngOnInit() {
-        this.setUser();
+        this.getData();
     }
 
     /**
-     * Navigate to a new route
-     * @param {string} route
+     * Get all bookmarks for the active user
      */
-    private go = ( route: string ): void => {
-        this._router.navigate( [ route ] );
+    private getData = (): void => {
+        const user = this._userService.fetchUser();
+        this._bookmarkService.getBookmarksByCreator( user.username ).subscribe(
+            ( data ) => { 
+                this.data = data.bookmarks;
+            }
+        )
     }
 
     /**
-     * Fetch the logged in user & set it to a useable variable
-     */
-    private setUser = (): void => {
-        const local = JSON.parse( localStorage.getItem( 'userInfo' ) ); 
-        this.user = {
-            username: local.username,
-            forename: local.forename,
-            surname:  local.surname
-        };
-    }
-
-    /**
-     * set the target bookmark for any CRUD operations (mainly the U & D operations)
+     * Set the target bookmark for any CRUD operations (mainly the U & D operations)
      * @param {string} bookmarkId - the bookmark to target
      */
-    private setTarget = ( bookmark: string ): void => {
-        this.target = bookmark;
+    private setTarget = ( bookmarkId: string ): void => {
+        this.target = bookmarkId;
     }
 
-    private createBookmark() {
-        let bookmark = this.bookmark;
+    /**
+     * Create a new bookmark
+     */
+    private createBookmark = ():void => {
+        this._bookmarkService.createBookmark( this.bookmark ).subscribe(
+            () => {
+                this.getData();
+            }
+        )
+    }
 
-        console.log( bookmark );
+    /**
+     * Edit an existing bookmark
+     * @param {string} bookmarkId - the bookmark to edit
+     * @param {Object} bookmark - the new content
+     */
+    private editBookmark = ( bookmarkId: string, bookmark: Bookmark ) => {
+        this._bookmarkService.updateBookmark( bookmarkId, bookmark );
+    }
+
+    private deleteBookmark = ( bookmarkId: string ): void => {
+        this._bookmarkService.deleteBookmark( bookmarkId ).subscribe(
+            () => {
+                this.getData();
+            }
+        )
     }
 
 }

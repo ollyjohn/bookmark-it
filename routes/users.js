@@ -74,11 +74,10 @@ router.post( '/auth', ( request, response, next ) => {
                 console.log( '>> [ SUCCESS - USER VERIFIED ]' );
                 let stripped = {
                     _id: user._id,
+                    username: user.username,
                     forename: user.forename,
                     surname: user.surname
                 };
-                // console.log( stripped );
-                console.log( user );
                 const token = jwt.sign( stripped, config.secret, {
                     //expires in 1 week
                     expiresIn: 3600*24*7
@@ -94,6 +93,7 @@ router.post( '/auth', ( request, response, next ) => {
     } );
 
 } );
+
 router.get( '/profile', passport.authenticate( 'jwt', { session: false } ), ( request, response, next ) => {
     response.json( { user: request.user[0] } );
 } );

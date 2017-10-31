@@ -6,5 +6,5 @@ export interface Bookmark {
     image?: string,
     date_created: Date,
     date_updated?: Date,
-    tags?: string
+    tags?: any
 }
