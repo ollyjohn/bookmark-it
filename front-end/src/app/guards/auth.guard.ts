@@ -5,12 +5,28 @@ import { AuthService } from '../services/auth/auth.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    constructor( private _authService: AuthService ) { }
+    constructor( private _authService: AuthService, private _router: Router ) { }
 
-    /**
-     * Determine whether or not the user should be allowed to access the URL they're attempting
-     */
-	canActivate( ) {
+	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        const url = JSON.stringify( state.url );
+        console.log( url );
+
+        // login, authenticated -> bookmarks
+        // if( url === '/login' && this._authService.isAuthenticated() ) {
+        //     this._router.navigate( [ '/bookmarks' ] );
+        //     return true;
+        // }
+        // // bookmark, authenticated -> bookmarks
+        // if( url === '/bookmarks' && this._authService.isAuthenticated() ) {
+        //     return true;
+        // }
+        
+        // if (url !== 'login' && !this._authService.isAuthenticated() ) {
+        //     return true;
+        // } else {
+        //     return false
+        // }
+
         return this._authService.isAuthenticated();
     }
 }

@@ -11,7 +11,6 @@ import { UserService } from '../../services/user/user.service';
 export class ListComponent implements OnInit {
 
     private data: any[] = [];
-    private target: string = '';
     private bookmark = {
         creator: this._userService.fetchUser().username,
         title: '',
@@ -21,7 +20,6 @@ export class ListComponent implements OnInit {
         date_created: new Date(),
         tags: ''
     };
-
     constructor( private _bookmarkService: BookmarkService, private _userService: UserService ) { }
 
     ngOnInit() {
@@ -44,8 +42,8 @@ export class ListComponent implements OnInit {
      * Set the target bookmark for any CRUD operations (mainly the U & D operations)
      * @param {string} bookmarkId - the bookmark to target
      */
-    private setTarget = ( bookmarkId: string ): void => {
-        this.target = bookmarkId;
+    private setTarget = ( bookmark: any ): void => {
+        this.bookmark = bookmark;
     }
 
     /**
@@ -55,6 +53,7 @@ export class ListComponent implements OnInit {
         this._bookmarkService.createBookmark( this.bookmark ).subscribe(
             () => {
                 this.getData();
+                this.clearBookmark();
             }
         )
     }
@@ -65,15 +64,38 @@ export class ListComponent implements OnInit {
      * @param {Object} bookmark - the new content
      */
     private editBookmark = ( bookmarkId: string, bookmark: Bookmark ) => {
-        this._bookmarkService.updateBookmark( bookmarkId, bookmark );
+        console.log( bookmarkId, bookmark );
+        // this._bookmarkService.updateBookmark( bookmarkId, bookmark ).subscribe( 
+        //     () => {
+        //         this.getData();
+        //         this.clearBookmark();
+        //     }
+        // )
     }
 
+    /**
+     * Delete an existing event
+     * @param {string} bookmarkId - the bookmark to delete
+     */
     private deleteBookmark = ( bookmarkId: string ): void => {
+        console.log( bookmarkId );
         this._bookmarkService.deleteBookmark( bookmarkId ).subscribe(
             () => {
                 this.getData();
             }
         )
+    };
+
+    private clearBookmark = (): void => {
+        this.bookmark = {
+            creator: this._userService.fetchUser().username,
+            title: '',
+            description: '',
+            url: '',
+            image: '',
+            date_created: new Date(),
+            tags: ''
+        }
     }
 
 }

@@ -17,8 +17,7 @@ div.no-bookmarks {
 }
 
 .no-bookmarks i {
-    font-size: 60pt !important;
-    font-weight: 500 !important;
+    font-size: 70pt !important;
 }
 
 .invisibutton {
@@ -57,6 +56,9 @@ div.img-container {
     position: relative;
     top: 0;
     left: 0;
+    height: 25%;
+    width: 100%;
+    overflow: none;
 }
 
 div.img-container img {
@@ -66,7 +68,7 @@ div.img-container img {
 }
 
 div.img-container:hover img {
-    filter: blur( 1px );
+    filter: blur( 1.5px );
     transition: linear all 0.2s;
     -webkit-transition: linear all 0.2s;
     -moz-transition: linear all 0.2s;
@@ -74,7 +76,6 @@ div.img-container:hover img {
 
 div.img-container .ctas {
     position: absolute;
-    width: 100%;
     top: calc( 50% - 30px );
     left: calc( 50% - ( 30px * 3) - ( 5px * 3) );
     display: none;
@@ -96,33 +97,33 @@ div.img-container .ctas {
     -moz-transition: linear all 0.2s;
 }
 
-.btn-circle.add {
+.icon-add {
     background-color: #2ecc71;
-    width: 45px;
-    height: 45px;
     position: fixed;
-    bottom: 25px;
-    right: 25px;
-}
-.btn-circle.add i {
-    color: #e0e0e0 !important;
-    position: relative;
-    top: -1px;
-    left: -7px;
+    padding: 10px;
+    font-size: 20px !important;
+    border-radius: 100%;
+    bottom: 35px;
+    right: 35px;
+    text-align: center;
+    color: #ecf0f1 !important;
 }
 
-.btn-circle.add:hover i {
+.icon-add:hover {
     color: #fff !important;
 }
 
 .btn-circle:active,
 .btn-circle:focus {
     outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .btn-circle i {
-    font-size: 20pt !important;
+    font-size: 25px !important;
     color: #c0c0c0 !important;
+    position: relative;
     transition: linear all 0.2s;
     -webkit-transition: linear all 0.2s;
     -moz-transition: linear all 0.2s;
@@ -158,18 +159,13 @@ div.bookmark .body h3 {
     font-size: 11pt;
 }
 
+div.bookmark .body .sub i {
+    margin-right: 10px;
+}
+
 div.bookmark img {
     width: 100%;
     height: auto;
-}
-
-div.bookmark .body .title {
-    color: #666;
-    font-weight: 400;
-}
-
-div.bookmark.body .url {
-    color: #999;
 }
 
 a.tag {

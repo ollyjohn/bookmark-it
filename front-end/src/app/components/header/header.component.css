@@ -1,7 +1,7 @@
 img {
     position: absolute;
     top: -12.5px;
-    left: 170px;
+    left: calc( 50% - ( 215px / 2 ) );
     height: 85px;
 }
 

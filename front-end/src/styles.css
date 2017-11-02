@@ -12,6 +12,14 @@ html, body {
 .btn:focus,
 .btn:active,
 .btn:after {
-    border: none; 
-    box-shadow: none;
+    border: none !important; 
+    box-shadow: none !important;
 }
+
+h1, h2, h3 {
+    font-weight: 400;
+}
+
+h4, h5, h6, p {
+    font-weight: 300;
+} 
