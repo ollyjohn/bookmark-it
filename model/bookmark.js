@@ -55,12 +55,7 @@ module.exports.createBookmark = ( bookmark, callback ) => {
 };
 
 module.exports.updateBookmark = ( id, content, callback ) => {
-    Bookmark.update( { _id: id }, { 
-        title: content.title, 
-        description: content.description,
-        image: content.image,
-        date_updated: new Date().toISOString()
-    }, callback );
+    Bookmark.update( { _id: id }, { $set: content } , callback );
 };
 
 module.exports.deleteBookmark = ( id, callback ) => {

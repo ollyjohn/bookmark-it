@@ -103,7 +103,7 @@ router.put( '/:id', ( request, response, next ) => {
 
     console.log( `>> [ ATTEMPTING TO UPDATE BOOKMARK ${ request.body.id } AT ${ new Date().toISOString() } ]` );
 
-    Bookmark.updateBookmarkById( request.body.id, request.body.bookmark, ( err, bookmark ) => {
+    Bookmark.updateBookmark( request.body.id, request.body.bookmark, ( err, bookmark ) => {
         if ( err ) {
             console.log( '>> [ ERROR - SERVER ]' );
             response.json( { success: false, msg: 'Something went wrong' } );
