@@ -12,6 +12,7 @@ export class ListComponent implements OnInit {
 
     private data: any[] = [];
     private bookmark = {
+        _id: '',
         creator: this._userService.fetchUser().username,
         title: '',
         description: '',
@@ -33,6 +34,7 @@ export class ListComponent implements OnInit {
         const user = this._userService.fetchUser();
         this._bookmarkService.getBookmarksByCreator( user.username ).subscribe(
             ( data ) => { 
+                console.log( data );
                 this.data = data.bookmarks;
             }
         )
@@ -63,23 +65,22 @@ export class ListComponent implements OnInit {
      * @param {string} bookmarkId - the bookmark to edit
      * @param {Object} bookmark - the new content
      */
-    private editBookmark = ( bookmarkId: string, bookmark: Bookmark ) => {
-        console.log( bookmarkId, bookmark );
-        // this._bookmarkService.updateBookmark( bookmarkId, bookmark ).subscribe( 
-        //     () => {
-        //         this.getData();
-        //         this.clearBookmark();
-        //     }
-        // )
+    private editBookmark = ( bookmark: any ) => {
+        console.log( bookmark );
+        this._bookmarkService.updateBookmark( bookmark._id, bookmark ).subscribe( 
+            () => {
+                this.getData();
+                this.clearBookmark();
+            }
+        )
     }
 
     /**
      * Delete an existing event
      * @param {string} bookmarkId - the bookmark to delete
      */
-    private deleteBookmark = ( bookmarkId: string ): void => {
-        console.log( bookmarkId );
-        this._bookmarkService.deleteBookmark( bookmarkId ).subscribe(
+    private deleteBookmark = ( ): void => {
+        this._bookmarkService.deleteBookmark( this.bookmark._id ).subscribe(
             () => {
                 this.getData();
             }
@@ -88,6 +89,7 @@ export class ListComponent implements OnInit {
 
     private clearBookmark = (): void => {
         this.bookmark = {
+            _id: '',
             creator: this._userService.fetchUser().username,
             title: '',
             description: '',

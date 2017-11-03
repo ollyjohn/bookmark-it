@@ -65,11 +65,13 @@ export class BookmarkService {
      * @param {string} bookmarkId - the id of the bookmark to update
      * @param {Object} bookmark - the new content of the bookmark
      */
-    public updateBookmark = ( bookmarkId: string, bookmark: Bookmark ): any => {
+    public updateBookmark = ( bookmarkId: string, bookmark: any ): any => {
         const headers = new Headers();
         headers.append( 'Content-Type', 'application/json' );
+
+        console.log( bookmark );
         
-        return this._http.put( this.prepareEndpoint( `bookmarks/${bookmarkId}` ), bookmark, { headers: headers } ).map( response => response.json() );
+        return this._http.put( this.prepareEndpoint( `bookmarks/${bookmarkId}` ), JSON.stringify(bookmark), { headers: headers } ).map( response => response.json() );
     }
 
 

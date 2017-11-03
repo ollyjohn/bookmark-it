@@ -1,10 +1,10 @@
 {
-  "name": "chingu-bookmarks",
+  "name": "bookmark.it",
   "version": "0.0.1",
-  "description": "Bookmark management application built using the MEAN stack",
+  "description": "Simple bookmark management app built with love and MEAN",
   "main": "app.js",
   "scripts": {
-    "start": "concurrently 'nodemon app.js' 'cd ./front-end && pwd && ng serve'"
+    "start": "node app"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "bookmark",
     "chingu"
   ],
-  "author": "Team 19",
+  "author": "The 19th Turtle Battalion",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ollyjohn/turtles-nineteen/issues"

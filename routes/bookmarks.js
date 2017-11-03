@@ -54,7 +54,7 @@ router.get( '/', ( request, response ) => {
 } );
 
 
-router.get( '/id/:bookmarkId', ( request, response ) => {
+router.get( '/:bookmarkId', ( request, response ) => {
     
     const bookmarkId = request.params.bookmarkId;
     
@@ -101,9 +101,11 @@ router.get( '/creator/:creatorId', ( request, response, next ) => {
 
 router.put( '/:id', ( request, response, next ) => {
 
-    console.log( `>> [ ATTEMPTING TO UPDATE BOOKMARK ${ request.body.id } AT ${ new Date().toISOString() } ]` );
+    console.log( `>> [ ATTEMPTING TO UPDATE BOOKMARK ${ request.params.id } AT ${ new Date().toISOString() } ]` );
+    const id = request.params.id;
+    const bookmark = request.body;
 
-    Bookmark.updateBookmark( request.body.id, request.body.bookmark, ( err, bookmark ) => {
+    Bookmark.updateBookmark( id, bookmark, ( err, bookmark ) => {
         if ( err ) {
             console.log( '>> [ ERROR - SERVER ]' );
             response.json( { success: false, msg: 'Something went wrong' } );
