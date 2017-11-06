@@ -35,7 +35,7 @@ app.use( '/users', users );
 app.use( '/bookmarks', bookmarks );
 
 app.get( '*', ( request, response ) => {
-    response.sendFile( path.join( __dirname, 'public/index.html' ) );
+    response.sendFile( path.join( __dirname, 'www/index.html' ) );
 } );
 
 app.listen( port, () => {
