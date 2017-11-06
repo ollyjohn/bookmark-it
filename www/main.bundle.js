@@ -634,6 +634,7 @@ var AuthService = (function () {
             var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
             headers.append('Content-Type', 'application/json');
             var endpoint = _this.prepareEndpoint('users/auth');
+            console.log(endpoint);
             return _this._http.post(endpoint, user, { headers: headers }).map(function (response) { return response.json(); });
         };
         /**
