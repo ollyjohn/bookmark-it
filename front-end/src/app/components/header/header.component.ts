@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
     public user: User = {} as User;
 
-    constructor( private _authService: AuthService, private _userService: UserService) { }
+    constructor( public _authService: AuthService, public _userService: UserService) { }
 
     ngOnInit() {
     }

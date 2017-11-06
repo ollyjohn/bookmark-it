@@ -10,8 +10,8 @@ import { UserService } from '../../services/user/user.service';
 })
 export class ListComponent implements OnInit {
 
-    private data: any[] = [];
-    private bookmark = {
+    public data: any[] = [];
+    public bookmark = {
         _id: '',
         creator: this._userService.fetchUser().username,
         title: '',
@@ -51,7 +51,7 @@ export class ListComponent implements OnInit {
     /**
      * Create a new bookmark
      */
-    private createBookmark = ():void => {
+    public createBookmark = ():void => {
         this._bookmarkService.createBookmark( this.bookmark ).subscribe(
             () => {
                 this.getData();
@@ -65,7 +65,7 @@ export class ListComponent implements OnInit {
      * @param {string} bookmarkId - the bookmark to edit
      * @param {Object} bookmark - the new content
      */
-    private editBookmark = ( bookmark: any ) => {
+    public editBookmark = ( bookmark: any ) => {
         console.log( bookmark );
         this._bookmarkService.updateBookmark( bookmark._id, bookmark ).subscribe( 
             () => {
@@ -79,14 +79,18 @@ export class ListComponent implements OnInit {
      * Delete an existing event
      * @param {string} bookmarkId - the bookmark to delete
      */
-    private deleteBookmark = ( ): void => {
+    public deleteBookmark = ( ): void => {
         this._bookmarkService.deleteBookmark( this.bookmark._id ).subscribe(
             () => {
                 this.getData();
+                this.clearBookmark();
             }
         )
     };
 
+    /**
+     * Reset the targeted bookmark
+     */
     private clearBookmark = (): void => {
         this.bookmark = {
             _id: '',

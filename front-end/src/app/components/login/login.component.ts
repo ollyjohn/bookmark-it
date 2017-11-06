@@ -24,29 +24,26 @@ export class LoginComponent {
         forename: '',
         surname:  ''
     };
-    private form: string = 'login';
-    private valid: boolean = true;
-    private message: string = '';
-    private working: boolean = false;
+    public registering: boolean = false;
+    public valid: boolean = true;
+    public message: string = '';
 
     constructor( private _auth: AuthService, private _router: Router, private _jwt: JwtHelper ) {}
 
     /**
      * Submit the form
-     * @param form
      */
-    onSubmit( form: string ): void {
-        this.working = true;
+    onSubmit(): void {
         let submitted: any;
-        form === 'login' ? submitted = this.login : submitted = this.register;
-        form === 'login' ? this.signIn( this.login ) : this.signUp( this.register );
+        !this.registering ? submitted = this.login : submitted = this.register;
+        !this.registering ? this.signIn( this.login ) : this.signUp( this.register );
     };
 
     /**
      * Switch which form is displayed
      */
-    private toggleForm = (): void => {
-        this.form === 'login' ? this.form = 'register' : this.form = 'login';
+    public toggleForm = (): void => {
+        this.registering = !this.registering;
     };
 
     /**
@@ -82,7 +79,6 @@ export class LoginComponent {
             data.password = data.password.a;
             this._auth.registerUser( data ).subscribe(
                 ( response ) => {
-                    this.working = false;
                     if( response.success ) {
                         this.toggleForm();
                         this.valid = true;
@@ -96,7 +92,6 @@ export class LoginComponent {
             );
         } else {
             this.valid = false;
-            this.working = false;
             this.message = 'Passwords don\'t match';
         }
         
