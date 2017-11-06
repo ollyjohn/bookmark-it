@@ -3,10 +3,10 @@
         <div class="jumbotron">
             <img src="assets/img/logo-dark.svg" alt="logo" height="150px">
             <div class="btn-group" role="group" aria-label="Log in or Sign up" data-toggle="buttons">
-                <button type="button" class="btn btn-light" [ngClass]="{ active: !registering }" (click)="toggleForm()">
+                <button type="button" class="btn btn-light" (click)="toggleForm()">
                     Log in
                 </button> 
-                <button type="button" class="btn btn-light" [ngClass]="{ active: registering }" (click)="toggleForm()">
+                <button type="button" class="btn btn-light" (click)="toggleForm()">
                     Sign up
                 </button> 
             </div>

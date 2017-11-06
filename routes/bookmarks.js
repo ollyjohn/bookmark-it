@@ -105,6 +105,8 @@ router.put( '/:id', ( request, response, next ) => {
     const id = request.params.id;
     const bookmark = request.body;
 
+    bookmark.tags = bookmark.tags.replace( ' ', '' ).split( ',' );
+
     Bookmark.updateBookmark( id, bookmark, ( err, bookmark ) => {
         if ( err ) {
             console.log( '>> [ ERROR - SERVER ]' );
