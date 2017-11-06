@@ -9,13 +9,12 @@ branches:
     - master
 
 before_script:
-  - npm install -g firebase-tools
+  - npm install
   - npm install -g @angular/cli
   - cd front-end
   - npm install
-  # TODO: Uncomment these when the back end's up and running
-  # - cd ../back-end
-  # - npm install
+  - cd ../back-end
+  - npm install
 
 script:
   - echo "$TRAVIS_BRANCH"
