@@ -34,25 +34,6 @@ router.post( '/', ( request, response ) => {
     } );
 } );
 
-router.get( '/', ( request, response ) => {
-    console.log( `>> [ ATTEMPTING TO FETCH ALL BOOKMARKS AT ${ new Date().toISOString() } ]` );
-
-    Bookmark.getBookmarks( ( err, bookmarks ) => {
-        if ( err ) {
-            console.log( '>> [ ERROR - SERVER FAULT ]' );
-            response.json( { success: false, msg: 'Something went wrong' } );
-            throw err;
-        }
-        if ( bookmarks.length === 0 ) {
-            console.log( '>> [ SUCCESS, BUT EMPTY PAYLOAD ]' );
-            response.json( { success: true, msg: 'No bookmarks' } );
-        } else {
-            console.log( '>> [ SUCCESS - BOOKMARKS FETCHED ]' );
-            response.json( { success: true, bookmarks: bookmarks } );
-        }
-    } );
-} );
-
 
 router.get( '/:bookmarkId', ( request, response ) => {
     
@@ -90,7 +71,7 @@ router.get( '/creator/:creatorId', ( request, response, next ) => {
             throw err;
         }
         if ( bookmarks.length === 0 ) {
-            console.log( '>> [ ERROR - NO BOOKMARKS FOUND ]' );
+            console.log( '>> [ SUCCESS, BUT NO BOOKMARKS FOUND ]' );
             response.json( { success: true, msg: `No bookmarks found by ${ creatorId }`, bookmarks: bookmarks } );
         } else {
             console.log( '>> [ SUCCESS - BOOKMARKS FETCHED ]' );

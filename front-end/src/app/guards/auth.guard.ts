@@ -8,8 +8,9 @@ export class AuthGuard implements CanActivate {
     constructor( private _authService: AuthService, private _router: Router ) { }
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        const url = JSON.stringify( state.url );
+        const url = state.url;
         console.log( url );
+        // console.log( url === '/bookmarks' );
 
         // login, authenticated -> bookmarks
         // if( url === '/login' && this._authService.isAuthenticated() ) {
