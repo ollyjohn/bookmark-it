@@ -16,6 +16,7 @@ import { BookmarkService } from './services/bookmark/bookmark.service';
 import { UserService } from './services/user/user.service';
 
 import { AuthGuard } from './guards/auth.guard';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
         AppComponent,
         LoginComponent,
         ListComponent,
-        HeaderComponent
+        HeaderComponent,
+        BookmarkComponent
     ],
     imports: [
         BrowserModule,

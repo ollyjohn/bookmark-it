@@ -11,6 +11,8 @@ export class AuthGuard implements CanActivate {
         const url = JSON.stringify( state.url );
         console.log( url );
 
+        console.log( url === '/dashboard' );
+
         // login, authenticated -> bookmarks
         // if( url === '/login' && this._authService.isAuthenticated() ) {
         //     this._router.navigate( [ '/bookmarks' ] );
