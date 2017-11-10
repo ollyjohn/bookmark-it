@@ -1,15 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="jumbotron">
-            <img src="assets/img/logo-dark.svg" alt="logo" height="150px">
-            <div class="btn-group" role="group" aria-label="Log in or Sign up" data-toggle="buttons">
-                <button type="button" class="btn btn-light" (click)="toggleForm()">
-                    Log in
-                </button> 
-                <button type="button" class="btn btn-light" (click)="toggleForm()">
-                    Sign up
-                </button> 
-            </div>
+            <img src="assets/img/logo-dark.png" alt="logo" height="150px">
             <div class="form" *ngIf="!registering">
                 <h3>Please sign in using the form below</h3>
                 <div class="form-group form-group-lg">
@@ -44,13 +36,17 @@
                 </div>
             </div>
             <button class="btn btn-dark btn-block btn-lg" type="button" (click)="onSubmit()">{{ !registering ? 'SIGN IN' : 'REGISTER' }}</button>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="!valid && message">
+            <button type="button" class="btn btn-block btn-light" (click)="toggleForm()">
+                <span *ngIf="!registering">Don't have an account?  Sign up here!</span>
+                <span *ngIf="registering">Already have an account?  Sign in here!</span>
+            </button>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="!valid && !!message">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <strong>Error: </strong> {{ message }}
             </div>
-            <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="valid && message">
+            <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="valid && !!message">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

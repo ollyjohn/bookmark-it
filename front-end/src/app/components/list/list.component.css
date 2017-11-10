@@ -195,3 +195,7 @@ div.form {
     padding-left: 10px;
     padding-right: 10px;
 }
+
+span.required {
+    color: red;
+}

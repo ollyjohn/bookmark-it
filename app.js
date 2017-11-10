@@ -21,8 +21,20 @@ mongoose.connection.on( 'error', ( err ) => {
 // setup
 const app = express();
 
+const forceSSL = () => {
+    return ( request, response, next ) => {
+        if ( request.headers[ 'x-forwarded-proto' ] !== 'https' ) {
+            return response.redirect(
+                `https://${request.get( 'Host' )}${request.url}`
+            );
+        }
+        next();
+    }
+}
+
 const port = process.env.PORT || 8080;
 
+app.use( forceSSL() );
 app.use( cors() );
 app.use( express.static( path.join( __dirname, 'www' ) ) )
 app.use( bodyParser.json() );

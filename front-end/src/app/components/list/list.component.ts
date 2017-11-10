@@ -21,10 +21,16 @@ export class ListComponent implements OnInit {
         date_created: new Date(),
         tags: ''
     };
+    public randImage = false;
     constructor( private _bookmarkService: BookmarkService, private _userService: UserService ) { }
 
     ngOnInit() {
         this.getData();
+    }
+
+    public useRand =  (): void => {
+        this.bookmark.image = `https://www.picsum.photos/500/250?image=${ Math.floor( Math.random() * 1080 ) + 1}`;
+        this.randImage = true;
     }
 
     /**

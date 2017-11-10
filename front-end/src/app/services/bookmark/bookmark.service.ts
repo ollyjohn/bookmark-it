@@ -12,10 +12,10 @@ export class BookmarkService {
 	 * Generate an endpoint depending on the environment
 	 * @param {string} url
 	 */
-	private prepareEndpoint = ( url: string ) => {
-		return ( environment.production ? url : `http://localhost:8080/${url}` );
-    };
-    
+    private prepareEndpoint = ( url: string ) => {
+        return ( environment.production ? url : `http://localhost:8080/${url}` );
+    }
+
     /**
      * Create a new bookmark
      * @param {Object} bookmark - the bookmark to create
@@ -45,7 +45,7 @@ export class BookmarkService {
     public getBookmark = ( bookmarkId: string ): any => {
         const headers = new Headers();
         headers.append( 'Content-Type', 'application/json' );
-        
+
         return this._http.get( this.prepareEndpoint( `bookmarks/${bookmarkId}` ), { headers: headers } ).map( response => response.json() );
     }
 
@@ -69,8 +69,6 @@ export class BookmarkService {
         const headers = new Headers();
         headers.append( 'Content-Type', 'application/json' );
 
-        console.log( bookmark );
-        
         return this._http.put( this.prepareEndpoint( `bookmarks/${bookmarkId}` ), JSON.stringify(bookmark), { headers: headers } ).map( response => response.json() );
     }
 
