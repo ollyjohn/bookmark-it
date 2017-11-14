@@ -34,7 +34,7 @@ const forceSSL = () => {
 
 const port = process.env.PORT || 8080;
 
-app.use( forceSSL() );
+// app.use( forceSSL() );
 app.use( cors() );
 app.use( express.static( path.join( __dirname, 'www' ) ) )
 app.use( bodyParser.json() );

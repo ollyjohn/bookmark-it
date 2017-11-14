@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Bookmark } from '../../models/bookmark';
 import { BookmarkService } from '../../services/bookmark/bookmark.service';
 import { UserService } from '../../services/user/user.service';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-list',
@@ -22,14 +23,16 @@ export class ListComponent implements OnInit {
         tags: ''
     };
     public randImage = false;
-    constructor( private _bookmarkService: BookmarkService, private _userService: UserService ) { }
+    constructor( private _bookmarkService: BookmarkService, private _userService: UserService, private _http: Http ) { }
 
     ngOnInit() {
         this.getData();
     }
 
     public useRand =  (): void => {
-        this.bookmark.image = `https://www.picsum.photos/500/250?image=${ Math.floor( Math.random() * 1080 ) + 1}`;
+        const r = Math.floor( Math.random() * 1080 ) + 1;
+
+        this.bookmark.image = `https://www.picsum.photos/500/250?image=${ r }`;
         this.randImage = true;
     }
 
@@ -40,7 +43,6 @@ export class ListComponent implements OnInit {
         const user = this._userService.fetchUser();
         this._bookmarkService.getBookmarksByCreator( user.username ).subscribe(
             ( data ) => { 
-                console.log( data );
                 this.data = data.bookmarks;
             }
         )
@@ -72,7 +74,6 @@ export class ListComponent implements OnInit {
      * @param {Object} bookmark - the new content
      */
     public editBookmark = ( bookmark: any ) => {
-        console.log( bookmark );
         this._bookmarkService.updateBookmark( bookmark._id, bookmark ).subscribe( 
             () => {
                 this.getData();

@@ -39,17 +39,6 @@ export class BookmarkService {
     }
 
     /**
-     * Call the API to get a bookmark
-     * @param {string} bookmarkId - the id of the bookmark to fetch
-     */
-    public getBookmark = ( bookmarkId: string ): any => {
-        const headers = new Headers();
-        headers.append( 'Content-Type', 'application/json' );
-
-        return this._http.get( this.prepareEndpoint( `bookmarks/${bookmarkId}` ), { headers: headers } ).map( response => response.json() );
-    }
-
-    /**
      * Call the API to fetch all bookmarks by a given creator
      * @param {string} creatorId - the creator's username
      */

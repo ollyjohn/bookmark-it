@@ -10,26 +10,24 @@ export class AuthGuard implements CanActivate {
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const url = state.url;
         console.log( url );
-        // console.log( url === '/bookmarks' );
-
-        console.log( url === '/dashboard' );
+        console.log( url === '/bookmarks' );
 
         // login, authenticated -> bookmarks
-        // if( url === '/login' && this._authService.isAuthenticated() ) {
-        //     this._router.navigate( [ '/bookmarks' ] );
-        //     return true;
-        // }
-        // // bookmark, authenticated -> bookmarks
-        // if( url === '/bookmarks' && this._authService.isAuthenticated() ) {
-        //     return true;
-        // }
+        if( url === '/login' && this._authService.isAuthenticated() ) {
+            console.log( 'LOGGED IN, REDIRECTING' );
+            this._router.navigate( [ '/bookmarks' ] );
+            return true;
+        }
+        // bookmark, authenticated -> bookmarks
+        if( url === '/bookmarks' && this._authService.isAuthenticated() ) {
+            console.log( 'LOGGED IN, ALLOWED ROUTE' );
+            return true;
+        }
         
-        // if (url !== 'login' && !this._authService.isAuthenticated() ) {
-        //     return true;
-        // } else {
-        //     return false
-        // }
-
-        return this._authService.isAuthenticated();
+        if (url !== 'login' && !this._authService.isAuthenticated() ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
