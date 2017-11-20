@@ -22,6 +22,15 @@ export class ListComponent implements OnInit {
         date_created: new Date(),
         tags: ''
     };
+    public target: any = {
+        _id: '',
+        creator: this._userService.fetchUser().username,
+        title: '',
+        url: '',
+        image: '',
+        date_created: new Date(),
+        tags: ''
+    };
     public randImage = false;
     constructor( private _bookmarkService: BookmarkService, private _userService: UserService, private _http: Http ) { }
 
@@ -32,20 +41,23 @@ export class ListComponent implements OnInit {
     /**
      * Generate a random index with which to call the unsplash API
      */
-    public useRand =  (): void => {
+    public useRand = ( update?: boolean ): void => {
         const r = Math.floor( Math.random() * 1080 ) + 1;
 
         this._http.get( `https://www.picsum.photos/500/250?image=${r}`)
-            .subscribe( 
-                ( respo ) => {
-                    respo.status === 200 
-                    // if good response, set the image
-                    ? () => { 
-                        this.bookmark.image = `https://www.picsum.photos/500/250?image=${ r }`;
-                        this.randImage = true; 
+            .subscribe(
+                ( data ) => {
+                    if ( data.status === 200 ) {
+                        const url = `https://www.picsum.photos/500/250?image=${r}`;
+                        if( update && !!update ) {
+                            this.target.image = url;
+                        } else {
+                            this.bookmark.image = url
+                        }
+                        this.randImage = true;
+                    } else {
+                        this.useRand( update );
                     }
-                    // otherwise, try again for a good image
-                    : this.useRand();
                 }
             );
     }
@@ -67,7 +79,9 @@ export class ListComponent implements OnInit {
      * @param {string} bookmarkId - the bookmark to target
      */
     private setTarget = ( bookmark: any ): void => {
-        this.bookmark = bookmark;
+        let tmp = JSON.stringify( bookmark );
+        this.target = JSON.parse( tmp );
+        this.target.tags = this.target.tags.join( ', ' );
     }
 
     /**
@@ -88,7 +102,7 @@ export class ListComponent implements OnInit {
      * @param {Object} bookmark - the new content
      */
     public editBookmark = ( bookmark: any ) => {
-        this._bookmarkService.updateBookmark( bookmark._id, bookmark ).subscribe( 
+        this._bookmarkService.updateBookmark( this.target._id, this.target ).subscribe( 
             () => {
                 this.getData();
                 this.clearBookmark();
@@ -101,7 +115,7 @@ export class ListComponent implements OnInit {
      * @param {string} bookmarkId - the bookmark to delete
      */
     public deleteBookmark = ( ): void => {
-        this._bookmarkService.deleteBookmark( this.bookmark._id ).subscribe(
+        this._bookmarkService.deleteBookmark( this.target._id ).subscribe(
             () => {
                 this.getData();
                 this.clearBookmark();
@@ -113,7 +127,7 @@ export class ListComponent implements OnInit {
      * Reset the targeted bookmark
      */
     private clearBookmark = (): void => {
-        this.bookmark = {
+        this.target = {
             _id: '',
             creator: this._userService.fetchUser().username,
             title: '',
@@ -122,7 +136,7 @@ export class ListComponent implements OnInit {
             image: '',
             date_created: new Date(),
             tags: ''
-        }
+        };
     }
 
 }
