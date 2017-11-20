@@ -29,11 +29,25 @@ export class ListComponent implements OnInit {
         this.getData();
     }
 
+    /**
+     * Generate a random index with which to call the unsplash API
+     */
     public useRand =  (): void => {
         const r = Math.floor( Math.random() * 1080 ) + 1;
 
-        this.bookmark.image = `https://www.picsum.photos/500/250?image=${ r }`;
-        this.randImage = true;
+        this._http.get( `https://www.picsum.photos/500/250?image=${r}`)
+            .subscribe( 
+                ( respo ) => {
+                    respo.status === 200 
+                    // if good response, set the image
+                    ? () => { 
+                        this.bookmark.image = `https://www.picsum.photos/500/250?image=${ r }`;
+                        this.randImage = true; 
+                    }
+                    // otherwise, try again for a good image
+                    : this.useRand();
+                }
+            );
     }
 
     /**
