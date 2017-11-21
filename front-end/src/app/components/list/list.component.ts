@@ -70,6 +70,7 @@ export class ListComponent implements OnInit {
         this._bookmarkService.getBookmarksByCreator( user.username ).subscribe(
             ( data ) => { 
                 this.data = data.bookmarks;
+                this.randImage = false;
             }
         )
     }
