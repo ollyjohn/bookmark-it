@@ -22,9 +22,15 @@ export class AuthGuard implements CanActivate {
             return true;
         }
         // not login, not authenticated -> login
-        if (url !== 'login' && !this._authService.isAuthenticated() ) {
+        if (url !== '/login' && !this._authService.isAuthenticated() ) {
             console.log( 'NOT LOGGED IN.  REDIRECTING' );
             this._router.navigate( [ '/login' ] );
+            return true;
+        }
+
+        // login, not authenticated -> login
+        if( url === '/login' && !this._authService.isAuthenticated() ) {
+            console.log( 'NOT LOGGED IN.  ALLOWED ROUTE' );
             return true;
         }
     }
