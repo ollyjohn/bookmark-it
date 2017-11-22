@@ -79,10 +79,14 @@ export class ListComponent implements OnInit {
      * Set the target bookmark for any CRUD operations (mainly the U & D operations)
      * @param {string} bookmarkId - the bookmark to target
      */
-    private setTarget = ( bookmark: any ): void => {
+    public setTarget = ( bookmark: any ): void => {
         let tmp = JSON.stringify( bookmark );
         this.target = JSON.parse( tmp );
         this.target.tags = this.target.tags.join( ', ' );
+    }
+
+    public goTo = ( url: string ): void => {
+        window.location.href = url;
     }
 
     /**

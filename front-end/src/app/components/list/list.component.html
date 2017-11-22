@@ -14,8 +14,8 @@
                 <div class="img-container">
                     <img src="{{ bookmark.image }}" alt="" class="hero">
                     <div class="ctas">
-                        <button class="btn btn-circle cta">
-                            <a href="{{ bookmark.url }}" target="_blank"><i class="icon-link"></i></a>
+                        <button class="btn btn-circle cta" (click)="goTo( bookmark.url )">
+                            <i class="icon-link"></i>
                         </button>
                         <button class="btn btn-circle cta" data-toggle="modal" data-target="#editModal" (click)="setTarget( bookmark )">
                             <i class="icon-edit"></i>
