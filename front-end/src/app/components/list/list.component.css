@@ -41,20 +41,20 @@ div.bookmark {
     position: relative;
     margin-bottom: 15px;
     overflow: scroll;
-    transition: linear all 0.2s;
-    -webkit-transition: linear all 0.2s;
-    -moz-transition: linear all 0.2s;
+    transition: linear all 0.1s;
+    -webkit-transition: linear all 0.1s;
+    -moz-transition: linear all 0.1s;
 }
 
 div.bookmark:hover {
-    transform: translateY( -2.5px );
-    -webkit-box-shadow: 2px 5px 10px 0px rgba(153,153,153,1);
-    -moz-box-shadow: 2px 5px 10px 0px rgba(153,153,153,1);
-    box-shadow: 2px 5px 10px 0px rgba(153,153,153,1);
+    transform: translateY( -1.5px );
+    -webkit-box-shadow: 2px 5px 7.5px 0px rgba(153,153,153,1);
+    -moz-box-shadow: 2px 5px 7.5px 0px rgba(153,153,153,1);
+    box-shadow: 2px 5px 7.5px 0px rgba(153,153,153,1);
     border-bottom: 5px solid #1abc9c;
-    transition: linear all 0.2s;
-    -webkit-transition: linear all 0.2s;
-    -moz-transition: linear all 0.2s;
+    transition: linear all 0.1s;
+    -webkit-transition: linear all 0.1s;
+    -moz-transition: linear all 0.1s;
 }
 
 div.img-container {
@@ -67,16 +67,16 @@ div.img-container {
 }
 
 div.img-container img {
-    transition: linear all 0.2s;
-    -webkit-transition: linear all 0.2s;
-    -moz-transition: linear all 0.2s;
+    transition: linear all 0.1s;
+    -webkit-transition: linear all 0.1s;
+    -moz-transition: linear all 0.1s;
 }
 
 div.img-container:hover img {
     filter: blur( 1.5px );
-    transition: linear all 0.2s;
-    -webkit-transition: linear all 0.2s;
-    -moz-transition: linear all 0.2s;
+    transition: linear all 0.1s;
+    -webkit-transition: linear all 0.1s;
+    -moz-transition: linear all 0.1s;
 }
 
 div.img-container .ctas {
@@ -84,9 +84,9 @@ div.img-container .ctas {
     top: calc( 50% - 30px );
     left: calc( 50% - ( 30px * 3) - ( 5px * 3) );
     display: none;
-    transition: linear all 0.2s;
-    -webkit-transition: linear all 0.2s;
-    -moz-transition: linear all 0.2s;
+    transition: linear all 0.1s;
+    -webkit-transition: linear all 0.1s;
+    -moz-transition: linear all 0.1s;
 }
 
 .btn-circle {
@@ -97,9 +97,9 @@ div.img-container .ctas {
     margin-left: 5px;
     background-color: rgba( 0,0,0,0.5 );
     text-align: center;
-    transition: linear all 0.2s;
-    -webkit-transition: linear all 0.2s;
-    -moz-transition: linear all 0.2s;
+    transition: linear all 0.1s;
+    -webkit-transition: linear all 0.1s;
+    -moz-transition: linear all 0.1s;
 }
 
 .icon-add {
@@ -129,21 +129,21 @@ div.img-container .ctas {
     font-size: 25px !important;
     color: #c0c0c0 !important;
     position: relative;
-    transition: linear all 0.2s;
-    -webkit-transition: linear all 0.2s;
-    -moz-transition: linear all 0.2s;
+    transition: linear all 0.1s;
+    -webkit-transition: linear all 0.1s;
+    -moz-transition: linear all 0.1s;
 }
 
 div.img-container .ctas .cta:hover * {
     color: #fff !important;
-    transition: linear all 0.2s;
-    -webkit-transition: linear all 0.2s;
-    -moz-transition: linear all 0.2s;
+    transition: linear all 0.1s;
+    -webkit-transition: linear all 0.1s;
+    -moz-transition: linear all 0.1s;
 }
 
 div.img-container:hover .ctas {
     display: block;
-    transition: linear all 0.2s;
+    transition: linear all 0.1s;
 }
 
 div.bookmark * {
@@ -181,17 +181,17 @@ a.tag {
     background: #efefef;
     border: 1px solid rgba( 127, 127, 127, 0.2 );
     border-radius: 3px;
-    transition: linear all 0.2s;
-    -webkit-transition: linear all 0.2s;
-    -moz-transition: linear all 0.2s;
+    transition: linear all 0.1s;
+    -webkit-transition: linear all 0.1s;
+    -moz-transition: linear all 0.1s;
     cursor: pointer;
 }
 
 a.tag:hover {
     background: #f9f9f9;
-    transition: linear all 0.2s;
-    -webkit-transition: linear all 0.2s;
-    -moz-transition: linear all 0.2s;
+    transition: linear all 0.1s;
+    -webkit-transition: linear all 0.1s;
+    -moz-transition: linear all 0.1s;
 }
 
 div.form {
