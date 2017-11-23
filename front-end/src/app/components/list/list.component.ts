@@ -43,11 +43,7 @@ export class ListComponent implements OnInit {
      */
     public useRand = ( update?: boolean ): void => {
         const r = Math.floor( Math.random() * 1080 ) + 1;
-
-        update 
-            ? console.log( 'UPDATING' )
-            : console.log( 'CREATING' );
-
+        
         this._http.get( `https://www.picsum.photos/500/250?image=${r}`)
             .subscribe(
                 ( data ) => {
@@ -59,8 +55,6 @@ export class ListComponent implements OnInit {
                             this.bookmark.image = url
                         }
                         this.randImage = true;
-                    } else {
-                        this.useRand( update );
                     }
                 }
             );
