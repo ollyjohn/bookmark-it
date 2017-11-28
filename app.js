@@ -11,6 +11,7 @@ const config = require( './config/db' );
 
 //database connect
 mongoose.connect( config.db );
+mongoose.Promise = global.Promise;
 mongoose.connection.on( 'connected', () => {
     console.log( '>> [ CONNECTED TO DATABASE ' + config.db + ' ]' );
 } );
