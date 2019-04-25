@@ -7,13 +7,12 @@ const passport = require( 'passport' );
 const mongoose = require( 'mongoose' );
 const users = require( './routes/users' );
 const bookmarks = require( './routes/bookmarks' );
-const config = require( './config/db' );
 
 //database connect
-mongoose.connect( config.db );
+mongoose.connect( `mongodb://${process.env.db_user}:${process.env.db_pass}@${process.env.db_url}` );
 mongoose.Promise = global.Promise;
 mongoose.connection.on( 'connected', () => {
-    console.log( '>> [ CONNECTED TO DATABASE ' + config.db + ' ]' );
+    console.log( '>> [ CONNECTED TO DATABASE ]' );
 } );
 mongoose.connection.on( 'error', ( err ) => {
     console.log( '>> [ ERROR CONNECTING TO DATABASE - ' + err + ' ]' );
@@ -35,7 +34,6 @@ const forceSSL = () => {
 
 const port = process.env.PORT || 8080;
 
-// app.use( forceSSL() );
 app.use( cors() );
 app.use( express.static( path.join( __dirname, 'www' ) ) )
 app.use( bodyParser.json() );

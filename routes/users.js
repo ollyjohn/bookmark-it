@@ -78,7 +78,7 @@ router.post( '/auth', ( request, response, next ) => {
                     forename: user.forename,
                     surname: user.surname
                 };
-                const token = jwt.sign( stripped, config.secret, {
+                const token = jwt.sign( stripped, process.env.db_scrt, {
                     //expires in 1 week
                     expiresIn: 3600*24*7
                 } );
