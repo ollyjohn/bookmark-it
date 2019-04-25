@@ -8,11 +8,8 @@ div.row {
 }
 
 div.no-bookmarks {
-    width: 50vw;
-    height: 50vh;
     position: absolute;
     top: 25vh;
-    left: 25vw;
     color: #95a5a6;
     text-align: center;
 }

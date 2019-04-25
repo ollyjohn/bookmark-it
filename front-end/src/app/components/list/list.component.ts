@@ -32,6 +32,7 @@ export class ListComponent implements OnInit {
         tags: ''
     };
     public randImage = false;
+    public randText = 'Get a random image';
     constructor( private _bookmarkService: BookmarkService, private _userService: UserService, private _http: Http ) { }
 
     ngOnInit() {
@@ -41,20 +42,21 @@ export class ListComponent implements OnInit {
     /**
      * Generate a random index with which to call the unsplash API
      */
-    public useRand = ( update?: boolean ): void => {
+    public useRand = ( update: boolean = false ): void => {
         const r = Math.floor( Math.random() * 1080 ) + 1;
-        
+        this.randText = 'Fetching image...';
+
         this._http.get( `https://www.picsum.photos/500/250?image=${r}`)
             .subscribe(
                 ( data ) => {
                     if ( data.status === 200 ) {
                         const url = `https://www.picsum.photos/500/250?image=${r}`;
-                        if( update && !!update ) {
+                        if( update ) {
                             this.target.image = url;
                         } else {
                             this.bookmark.image = url
                         }
-                        this.randImage = true;
+                        this.randText = 'Get a different image';
                     }
                 }
             );
@@ -66,9 +68,8 @@ export class ListComponent implements OnInit {
     private getData = (): void => {
         const user = this._userService.fetchUser();
         this._bookmarkService.getBookmarksByCreator( user.username ).subscribe(
-            ( data ) => { 
+            ( data ) => {
                 this.data = data.bookmarks;
-                this.randImage = false;
             }
         )
     }
@@ -105,7 +106,7 @@ export class ListComponent implements OnInit {
      * @param {Object} bookmark - the new content
      */
     public editBookmark = ( bookmark: any ) => {
-        this._bookmarkService.updateBookmark( this.target._id, this.target ).subscribe( 
+        this._bookmarkService.updateBookmark( this.target._id, this.target ).subscribe(
             () => {
                 this.getData();
                 this.clearBookmark();
